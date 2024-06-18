@@ -368,19 +368,60 @@ export interface ApiNyhetNyhet extends Schema.CollectionType {
     singularName: 'nyhet';
     pluralName: 'nyheter';
     displayName: 'Nyheter';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
-    Title: Attribute.String;
+    Title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     Slug: Attribute.UID<'api::nyhet.nyhet', 'Title'>;
-    Description: Attribute.Blocks;
-    Content: Attribute.Blocks;
-    Author: Attribute.String;
-    AuthorImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    Date: Attribute.Date;
-    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Description: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Content: Attribute.Blocks &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    Author: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    AuthorImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    Date: Attribute.Date &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
+    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: false;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -396,6 +437,12 @@ export interface ApiNyhetNyhet extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::nyhet.nyhet',
+      'oneToMany',
+      'api::nyhet.nyhet'
+    >;
+    locale: Attribute.String;
   };
 }
 
