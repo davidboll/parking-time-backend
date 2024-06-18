@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "nyheter",
+  "info": {
+    "singularName": "nyhet",
+    "pluralName": "nyheter",
+    "displayName": "Nyheter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title"
+    },
+    "Description": {
+      "type": "blocks"
+    },
+    "Content": {
+      "type": "blocks"
+    },
+    "Author": {
+      "type": "string"
+    },
+    "AuthorImage": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "Date": {
+      "type": "date"
+    },
+    "Image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
