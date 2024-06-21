@@ -416,10 +416,11 @@ export interface ApiNyhetNyhet extends Schema.CollectionType {
           localized: false;
         };
       }>;
-    Image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+    Image: Attribute.Media<'images'> &
+      Attribute.Required &
       Attribute.SetPluginOptions<{
         i18n: {
-          localized: false;
+          localized: true;
         };
       }>;
     createdAt: Attribute.DateTime;
